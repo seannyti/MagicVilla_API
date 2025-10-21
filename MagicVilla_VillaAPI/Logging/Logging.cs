@@ -6,11 +6,9 @@
         {
             if (type == "error")
             {
-                Console.WriteLine("Error - " + message);
+                Console.WriteLine("ERROR - " + message);
             }
-
             else
-
             {
                 Console.WriteLine(message);
             }
