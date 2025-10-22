@@ -3,10 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MagicVilla_VillaAPI.Models.Dto
 {
-    public class VillaDTO
+    public class VillaCreateDTO
     {
-        [Key]
-        public int Id { get; set; }
         [Required, MaxLength(30)]
         public string Name { get; set; }
         public string Details { get; set; }
