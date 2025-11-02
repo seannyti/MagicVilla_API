@@ -11,10 +11,10 @@ namespace MagicVilla_Web.Services
     {
         public APIResponse responseModel { get; set; }
         public IHttpClientFactory httpClient { get; set; }
-        public BaseService(IHttpClientFactory httpClientFactory)
+        public BaseService(IHttpClientFactory httpClient)
         {
-            responseModel = new();
-            this.httpClient = httpClientFactory;
+            this.responseModel = new();
+            this.httpClient = httpClient;
         }
         public async Task<T> SendAsync<T>(APIRequest apiRequest)
         {
@@ -23,12 +23,12 @@ namespace MagicVilla_Web.Services
                 var client = httpClient.CreateClient("MagicAPI");
                 HttpRequestMessage message = new HttpRequestMessage();
                 message.Headers.Add("Accept", "application/json");
-                message.RequestUri = new Uri(apiRequest.Url!);
+                message.RequestUri = new Uri(apiRequest.Url);
                 if (apiRequest.Data != null)
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data), Encoding.UTF8, "application/json");
                 }
-                switch (apiRequest.APIType)
+                switch (apiRequest.ApiType)
                 {
                     case SD.ApiType.POST:
                         message.Method = HttpMethod.Post;
